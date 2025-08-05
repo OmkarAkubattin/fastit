@@ -6,7 +6,13 @@ npm create vite@latest frontend -- --template react
 cd frontend
 
 # Install dependencies
-npm install axios react-router-dom
+npm install axios react-router-dom 
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+# Add to tailwind.config.js
+sed -i '/content:/c\  content: ["./index.html", "./src/**/*.{js,jsx}"],' tailwind.config.js
+# Add Tailwind to styles
+echo -e "@tailwind base;\n@tailwind components;\n@tailwind utilities;" > src/index.css
 
 # Create folders
 mkdir src/pages src/components src/context
