@@ -4,6 +4,37 @@ npm install sequelize mysql2
 # Initialize Sequelize (will create config, models, migrations folders)
 npx sequelize init
 
+# Create config/config.js
+cat <<EOF > config/config.js
+require('dotenv').config();
+
+module.exports = {
+  development: {
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT
+  },
+  test: {
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT
+  },
+  production: {
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT
+  }
+};
+EOF
+
+echo "✅ Sequelize config/config.js file created"
+
 # Overwrite or create models/User.js
 cat <<EOF > models/User.js
 'use strict';
