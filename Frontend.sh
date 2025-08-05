@@ -11,6 +11,11 @@ npm install axios react-router-dom
 # Create folders
 mkdir src/pages src/components src/context
 
+# Create .env file for frontend
+cat <<EOF > .env
+VITE_API_URL=http://localhost:5000
+EOF
+
 # Add AuthContext
 cat <<EOF > src/context/AuthContext.jsx
 import { createContext, useState, useEffect } from 'react';
@@ -42,6 +47,17 @@ export const AuthProvider = ({ children }) => {
   );
 };
 EOF
+
+cat <<EOF > src/axios.js
+import axios from 'axios';
+
+const instance = axios.create({
+  baseURL: import.meta.env.VITE_API_URL
+});
+
+export default instance;
+EOF
+
 
 # Add Login Page
 cat <<EOF > src/pages/Login.jsx
