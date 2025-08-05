@@ -157,3 +157,4 @@ module.exports = router;
 EOF
 
 echo "✅ Backend setup complete. Run 'cd backend && node server.js' after setting MongoDB."
+
